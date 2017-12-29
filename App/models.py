@@ -2,16 +2,18 @@ from django.db import models
 
 
 class User(models.Model):
-    username = models.CharField(null=True, blank=True, max_length=50)
-    password = models.CharField(null=True, blank=True, max_length=1000)
+    username = models.CharField(null=False, blank=False, max_length=50)
+    email = models.CharField(null=False, blank=False, max_length=1000)
+    is_avtive = models.BooleanField(default=False)
+    password = models.CharField(null=False, blank=False, max_length=1000)
 
     def __str__(self):
         return self.username
 
 # 为手机模型
 class Store(models.Model):
-    name = models.CharField(null=True, blank=True, max_length=1000)
-    unit = models.IntegerField(null=True, blank=True)
+    name = models.CharField(null=False, blank=False, max_length=1000)
+    unit = models.IntegerField(null=False, blank=False)
     images = models.FileField(upload_to='media/')
 
     def __str__(self):

@@ -6,7 +6,6 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -44,6 +43,20 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/signout': ''
+        }
+      },
+      '/is_active': {
+        target: 'http://localhost:8000/is_active/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/is_active': ''
+        }
+      },
+      '/car': {
+        target: 'http://localhost:8000/car/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/car': ''
         }
       }
     },

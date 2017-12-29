@@ -6,6 +6,9 @@ import Phones from '@/components/Phones'
 import Exp1 from '@/components/Exp_1'
 import Exp2 from '@/components/Exp_2'
 import Self from '@/components/Self'
+import Complete from '@/components/complete'
+import is_active from '@/components/is_active'
+
 
 Vue.use(Router)
 
@@ -29,11 +32,19 @@ export default new Router({
     },
     {
       path: '/phones',
-      component: Phones,
+      component: Phones
     },
     {
       path: '/self',
-      component: Self,
+      component: Self
+    },
+    {
+      path: '/Complete',
+      component: Complete
+    },
+    {
+      path: '/is_active',
+      component: is_active
     }
   ]
 })

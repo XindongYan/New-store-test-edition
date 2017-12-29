@@ -5,19 +5,19 @@
             <br />
             <br />
             <label for="">用户名:</label>&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="text" name="username" placeholder="输入你的用户名">
+            <input type="text" name="username" required="required"  placeholder="输入你的用户名">
             <br>
             <br />
             <label for="">邮箱:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="text" name="email" placeholder="邮箱">
+            <input type="email" name="email" required="required" placeholder="邮箱">
             <br />
             <br />
             <label for="">密码:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input id="password" type="password" name="password" placeholder="密码">
+            <input id="password" type="password" required="required" name="password" placeholder="密码">
             <br />
             <br />
             <label for="">再次输入:</label>&nbsp
-            <input v-model="repsd" id="re_password" type="password" name="re_password" placeholder="再次输入">
+            <input v-model="repsd" id="re_password" required="required" type="password" name="re_password" placeholder="再次输入">
             <br />
             <br />
             <input style="height: 30px; width: 100px; background:#2d8cf0; color:#fff" type="submit" value="提交"> {{ message }}

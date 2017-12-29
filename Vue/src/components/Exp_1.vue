@@ -5,11 +5,11 @@
             <br />
             <br />
             <label for="">用户名:</label>&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="text" name="username" placeholder="输入你的用户名">
+            <input type="text" required="required" name="username" placeholder="输入你的用户名">
             <br>
             <br />
             <label for="">密码:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="password" name="password" placeholder="密码">
+            <input type="password" required="required" name="password" placeholder="密码">
             <br />
             <br />
             <input style="height: 30px; width: 70px; background:#2d8cf0; color:#fff" type="submit" @click='greet' value="提交">

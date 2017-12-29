@@ -1,15 +1,23 @@
 <template lang="html">
   <div class="">
     <h1>Phones</h1>
+    <h3>{{session}}</h3>
     <router-link to="/">返回主页</router-link>
     <hr />
 
     <div v-for="item in message">
       <div class="box">
-        <h3>{{ item.name }}</h3>
-        <img :src="'http://localhost:8000' + item.images" alt="">
+        <h3 name="store_name">{{ item.name }}</h3>
+        <img name="image" :src="'http://localhost:8000' + item.images" alt="">
         <br />
-        <span>￥{{ item.unit }}</span> <form action="/car" method="post"><button>加入购物车</button></form>
+        <span name="unit">￥{{ item.unit }}</span>
+        <form action="/car" method="post">
+            <input v-show='display' type="text" name="store_name" :value="item.name">
+            <input v-show="display" type="text" name="image" :value="item.images">
+            <input v-show="display" type="text" name="unit" :value="item.unit">
+
+          <button>加入购物车</button>
+        </form>
         <br />
       </div>
     </div>
@@ -23,12 +31,17 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      message: ''
+      message: '',
+      session: '',
+      display: false
     }
   },
   created() {
     axios.get('/phones').then((res) => {
       this.message = res.data
+    }),
+    axios.post('/car').then((res) => {
+      //
     })
   }
 }
@@ -43,7 +56,7 @@ button {
     background: #DE2626;
     border-radius: 3px;
     border: 0.8px solid #fff;
-    font-size: 15px;
+    /* font-size: 15px; */
     color: #fff
 }
 h1, h2 {
