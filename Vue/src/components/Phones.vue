@@ -2,9 +2,9 @@
   <div class="">
     <h1>Phones</h1>
     <h3>{{session}}</h3>
-    <router-link to="/">返回主页</router-link>
+    <router-link to="/"> 返回主页</router-link>
     <hr />
-
+    <p v-show="p1">需要验证</p>
     <div v-for="item in message">
       <div class="box">
         <h3 name="store_name">{{ item.name }}</h3>
@@ -16,7 +16,7 @@
             <input v-show="display" type="text" name="image" :value="item.images">
             <input v-show="display" type="text" name="unit" :value="item.unit">
 
-          <button>加入购物车</button>
+            <button>加入购物车</button>
         </form>
         <br />
       </div>
@@ -29,20 +29,35 @@
 /* eslint-disable */
 import axios from 'axios'
 export default {
+  name: 'Phones',
   data() {
     return {
       message: '',
       session: '',
-      display: false
+      display: false,
+      p1: false
     }
   },
   created() {
     axios.get('/phones').then((res) => {
       this.message = res.data
     }),
-    axios.post('/car').then((res) => {
-      //
+    axios.get('/car').then((res) => {
+      console.log(res.data);
+      if (res.data)
+        this.p1 = true
     })
+  },
+  methods: {
+      prt() {
+          axios.post('/car', {
+          }).then((res) => {
+              //
+          })
+      },
+      greet: (event) => {
+
+      }
   }
 }
 </script>
@@ -71,7 +86,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #666;
   text-decoration: none;
 }
 span {

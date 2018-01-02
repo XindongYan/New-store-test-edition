@@ -4,12 +4,13 @@
       <router-link v-show='sign' to='/login'><button type="button">登陆</button></router-link>
 
       <h3 v-if="seen"><router-link to="/self"> {{ session }}</router-link></h3>
-      <!-- <p v-show="n">{{ nul }}</p> -->
 
       <form action="/signout" method="post">
-        <button v-show='signout'>
-            <router-link to="/signout"><a style="color:#495060">登出</a></router-link>
-        </button>
+        <!-- <router-link to="/signout"> -->
+          <button v-show='signout'>
+            <a style="color:#495060">登出</a>
+          </button>
+        <!-- </router-link> -->
       </form>
     <br />
 
@@ -92,6 +93,9 @@ export default {
             //
         })
     },
+    greet: (event) => {
+
+    }
   }
 }
 </script>

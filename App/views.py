@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect
-from .models import User, Store
+from .models import User, Store, Car
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import hashlib
@@ -65,9 +65,10 @@ def register(request):
             return HttpResponse(u'两次密码填写不正确')
         password = md5(psd + 'the-Salt')
         User(username= username, password= password, email=email, is_avtive=False).save()
-        send_email(email)
         # 注册用户时方便邮箱验证所以设置session
         request.session['username'] = username
+        send_email(email)
+
     return HttpResponseRedirect('/complete')
 
 
@@ -83,16 +84,16 @@ def is_active(request):
 #退出登陆
 def signout(request):
     auth.logout(request)
-    try:
-        del request.session['username']
-        return HttpResponseRedirect('/')
-    except:
-        return HttpResponseRedirect('/')
+    # try:
+    #     del request.session['username']
+    # except:
+    #     print('except')
+    return HttpResponseRedirect('/')
 
 
 def index(request):
     if request.method == 'GET':
-        data = Store.objects.all()
+        data = Store.objects.order_by("-name")
         print(data)
         return render(request, 'index.html', {'list': data})
 
@@ -116,13 +117,22 @@ class Sess(object):
 se = Sess()
 
 
+@api_view(['GET', 'POST'])
 def car(request):
-    if request.method == 'POST':
-        store_name = request.POST['store_name']
-        image = request.POST['image']
-        unit = request.POST['unit']
-        print([store_name])
-        return HttpResponse(u'OK')
+        # try:
+            # request.session['username']
+            value = se.sess(request)
+            print(value)
+            ll = User.objects.get(username=value)
+            if ll.is_avtive == False:
+                return Response({'messages':'需要验证'})
+            store_name = request.POST['store_name']
+            image = request.POST['image']
+            unit = request.POST['unit']
+            Car(username= value, store_name= store_name, num= '1', unit= unit).save()
+            return HttpResponseRedirect('/Phones')
+        # except:
+        #     return HttpResponseRedirect('/Login')
 
 
 # Create your views here.

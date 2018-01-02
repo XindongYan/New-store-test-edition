@@ -32,6 +32,7 @@ export default new Router({
     },
     {
       path: '/phones',
+      name: 'Phones',
       component: Phones
     },
     {
